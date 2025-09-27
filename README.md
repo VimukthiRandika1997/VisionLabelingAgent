@@ -23,3 +23,40 @@ Agentic Object Detection goes beyond traditional detection by:
 - Leveraging **Open-vocabulary models** to detect a wide range of objects:
     - This could be another VLM (Florence-2, Moondream-3, etc)
 
+## 🛠️ Step-by-Step Pipeline
+
+### 1. User Input: Image and Text Prompt
+
+- Accepts an user query (eg: "Find all sports equipments") and and image
+
+### 2. Concept Inference via Vision Language Model
+
+- Use a VLM (with reasoning ability) to infer  target object concepts from the image and query
+- If the query is vague, then the model identifies all visible objects
+
+### 3. Initial Detection with Open-Vocabulary Model
+
+- Pass inferred concepts to an open-vocabulary object detection model(eg: Grounding DINO, Florence-2, Moondream-3)
+- Generate bounding boxes for detected objects
+
+### 4. Annotation and Visualization
+
+- Annotate the image with labels, and unique IDs for each detected object
+
+### 5. Reasoning and Validation
+
+- Use a VLM reasoning model to validate detections using **Chain-of-Thought** reasoning
+- Refine object categories to higher-level abstractions if needed:
+    - eg: "Poodle" -> "dog"
+
+### 6. Re-run Detection
+
+- Feed refined concepts back into the detection model to update bounding boxes
+
+### 7. Final Review
+
+- Use the VLM to filter out irrelevant detections and retain only those aligned with the user's requesto
+
+## Installation and Running
+
+## Running Tests
